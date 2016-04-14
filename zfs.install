@@ -13,9 +13,9 @@ post_upgrade() {
 check_initramfs() {
     echo ">>> Updating module dependencies. Please wait ..."
 
-    _kernel_version=$(pacman -Q linux | awk '{print $2}')
+    _kernel_module_version=$(pacman -Ql linux | grep -oE '[0-9]+\.[0-9]+\.[0-9]+-[0-9]+' | head -n1)
 
-    depmod ${_kernel_version}-ARCH
+    depmod ${_kernel_module_version}-ARCH
 
     MK_CONF=$(grep -v '#' /etc/mkinitcpio.conf | grep zfs >/dev/null; echo $?);
     if [[ $MK_CONF == '0' ]]; then
