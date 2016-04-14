@@ -2,7 +2,9 @@
 # Contributor: Jesus Alvarez <jeezusjr at gmail dot com>
 # Contributor: Kyle Fuller <inbox at kylefuller dot co dot uk>
 
-_kernel_version=$(pacman -Q linux | awk '{print $2}')
+_spl_git_version=$(pacman -Q spl-git | awk '{print $2}')
+_zfs_utils_git_version=$(pacman -Q zfs-utils-git | awk '{print $2}')
+_kernel_version=$(pacman -Ql linux | grep -oE '[0-9]+\.[0-9]+\.[0-9]+-[0-9]+' | head -n1)
 _gitname="zfs"
 
 pkgname="zfs-git"
@@ -10,7 +12,7 @@ pkgver=0.6.3_r240_g40749aa_3.19.2_1
 pkgrel=1
 license=('CDDL')
 pkgdesc="Kernel modules for the Zettabyte File System."
-depends=("spl-git" "zfs-utils-git" "linux=${_kernel_version}")
+depends=("spl-git=${_spl_git_version}" "zfs-utils-git=${_zfs_util_git_version}" "linux=${_kernel_version}")
 makedepends=("git" "linux-headers=${_kernel_version}")
 arch=("i686" "x86_64")
 url="http://zfsonlinux.org/"
@@ -25,7 +27,7 @@ install=zfs.install
 pkgver() {
     cd ${srcdir}/${_gitname}
     REPO_VER=$(git describe --long | sed 's/^zfs-//;s/\([^-]*-g\)/r\1/;s/-/./g')
-    KERNEL_VER=$(pacman -Q linux | awk '{print $2}' | sed -r 's/-/_/g')
+    KERNEL_VER=$(pacman -Ql linux | grep -oE '[0-9]+\.[0-9]+\.[0-9]+-[0-9]+' | head -n1 | sed -r 's/-/_/g')
     echo "${REPO_VER}_${KERNEL_VER}"
 }
 
