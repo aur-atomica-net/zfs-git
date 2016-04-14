@@ -13,7 +13,7 @@ pkgver=0.6.3_r240_g40749aa_3.19.2_1
 pkgrel=1
 license=('CDDL')
 pkgdesc="Kernel modules for the Zettabyte File System."
-depends=("spl-git=${_spl_git_version}" "zfs-utils-git=${_zfs_util_git_version}" "linux=${_kernel_version}")
+depends=("spl-git=${_spl_git_version}" "zfs-utils-git=${_zfs_utils_git_version}" "linux=${_kernel_version}")
 makedepends=("git" "linux-headers=${_kernel_version}")
 arch=("i686" "x86_64")
 url="http://zfsonlinux.org/"
