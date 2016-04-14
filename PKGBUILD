@@ -3,7 +3,7 @@
 # Contributor: Kyle Fuller <inbox at kylefuller dot co dot uk>
 
 _spl_git_version=$(pacman -Ss '^spl-git$' | grep spl-git | awk '{print $2}')
-_zfs_utils_git_version=$(pacman -Sys '^zfs-utils-git$' | grep zfs-utils-git | awk '{print $2}')
+_zfs_utils_git_version=$(pacman -Ss '^zfs-utils-git$' | grep zfs-utils-git | awk '{print $2}')
 _kernel_version=$(pacman -Q linux | awk '{print $2}')
 _kernel_module_version=$(pacman -Ql linux | grep -oE '[0-9]+\.[0-9]+\.[0-9]+-[0-9]+' | head -n1)
 _gitname="zfs"
