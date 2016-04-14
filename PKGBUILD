@@ -57,5 +57,5 @@ package() {
     cp -r "$pkgdir"/{lib,usr}
     rm -r "$pkgdir"/lib
 
-    sed -i "s+${srcdir}++" ${pkgdir}/usr/src/zfs-*/${_kernel_version}-ARCH/Module.symvers
+    sed -i "s+${srcdir}++" ${pkgdir}/usr/src/zfs-*/${_kernel_module_version}-ARCH/Module.symvers
 }
